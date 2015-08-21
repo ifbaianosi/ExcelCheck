@@ -1,11 +1,13 @@
-package br.edu.ifbaiano.napsi.excelcheck.laucher;
+package br.edu.ifbaiano.napsi.excelcheck.utils;
  
   
 import java.io.File;  
 import java.io.IOException; 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 import javax.swing.JOptionPane;
 
@@ -61,6 +63,35 @@ public class Main {
 		this.nColunaComparacaoPsicoSocial = nColuna;
 	}
 	
+	
+	public HashMap<String, Integer> carregarXlsSra (File sra) throws BiffException, IOException{
+		  //carregar a planilha extraída do SRA  
+	      workbookSRA = Workbook.getWorkbook(sra.getAbsoluteFile());
+	      
+	      /* pega a primeira planilha dentro do arquivo XLS do SRA*/  
+		  sheetSRA = workbookSRA.getSheet(0);
+		  
+		  qtdLinhasSRA = sheetSRA.getRows();
+		  int qtdColuna = sheetSRA.getColumns();
+		  
+		  HashMap<String, Integer> colinha = new HashMap<String, Integer>();
+		  colinha.put("linhas", qtdLinhasSRA);
+		  colinha.put("colunas", qtdColuna);
+		  
+		  return colinha;
+		}
+	
+	public void carregarXlsNapsi (File napsi) throws BiffException, IOException{      
+	      //carregar a planilha extraida do Nucleo psico social 
+	      workbookPsicoSocial = Workbook.getWorkbook(napsi.getAbsoluteFile());
+		  
+		  /* pega a primeira planilha dentro do arquivo XLS do SRA*/  
+		  sheetPsico = workbookPsicoSocial.getSheet(0);
+		  
+		  qtdLinhasPsico = sheetPsico.getRows();
+		}
+	
+	
 	public void carregarXLS () throws BiffException, IOException{
 	  //carregar a planilha extraida do SRA  
       workbookSRA = Workbook.getWorkbook(new File("xls/Pasta1.xls").getAbsoluteFile());
@@ -102,6 +133,15 @@ public class Main {
 		 
 		workbook.write();
 		workbook.close();
+	}
+	
+	public String [] obterColunasSra (){
+		int qtdColunas = sheetSRA.getColumns();
+		colunas = new String [qtdColunas];
+		for (int i = 0; i < qtdColunas; i++) {
+			colunas [i] = sheetSRA.getCell(i, 0).getContents();
+		}
+		return colunas;
 	}
 	
 	public String [] obterColunas (){

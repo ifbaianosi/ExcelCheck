@@ -22,6 +22,8 @@ import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import java.awt.event.KeyEvent;
 import javax.swing.border.MatteBorder;
+import javax.swing.JComboBox;
+import javax.swing.DefaultComboBoxModel;
 
 public class aplicacao extends JFrame {
 
@@ -45,15 +47,11 @@ public class aplicacao extends JFrame {
 	private JButton jButton_ajuda = null;
 	private JLabel jLabel26 = null;
 	private JLabel jLabel27 = null;
-	private JPanel jPanel10 = null;
 	private JLabel jLabel28 = null;
 	private JLabel jLabel29 = null;
 	private JLabel jLabel30 = null;
 	private JLabel jLabel_imgMEC = null;
-	private JTextField textField;
 	private JTextField textField_1;
-	public JButton btnNAPSI;
-	public JButton btnSRA;
 	private JLabel lblNomeDoArquivo_1;
 	private JLabel label;
 	private JLabel lblColunas_1;
@@ -61,10 +59,19 @@ public class aplicacao extends JFrame {
 	private JLabel label_1;
 	private JLabel label_2;
 	private JLabel lblNewLabel_3;
-	private JTextField textField_2;
 	private JLabel lblAPlanilhaInforma;
-	private JTextField textField_3;
 	private JButton btnComparar;
+	private JLabel label_3;
+	private JLabel label_4;
+	private JLabel label_5;
+	protected JButton btnNAPSI;
+	protected JButton btnSRA;
+	protected JTextField diretorioSRA;
+	protected JLabel lblNomeArquivo;
+	protected JLabel lblColunaSra;
+	protected JLabel lblLinhaSra;
+	protected JComboBox comboBoxSra;
+	private JComboBox comboBox;
 	
 	
 	
@@ -141,14 +148,14 @@ public class aplicacao extends JFrame {
 			jPanel_conteudo.add(jLabel26);
 			jPanel_conteudo.add(jLabel27);
 			
-			JLabel lblColoqueAPlanilha = new JLabel("Coloque a planilha dos alunos cadastrados(SRA):");
+			JLabel lblColoqueAPlanilha = new JLabel("Coloque a planilha dos alunos cadastrados (SRA):");
 			lblColoqueAPlanilha.setBounds(10, 37, 293, 14);
 			jPanel_conteudo.add(lblColoqueAPlanilha);
 			
-			textField = new JTextField();
-			textField.setBounds(10, 62, 540, 20);
-			jPanel_conteudo.add(textField);
-			textField.setColumns(10);
+			diretorioSRA = new JTextField();
+			diretorioSRA.setBounds(10, 62, 540, 20);
+			jPanel_conteudo.add(diretorioSRA);
+			diretorioSRA.setColumns(10);
 			
 			btnSRA = new JButton("");
 			btnSRA.setBounds(560, 61, 58, 23);
@@ -158,30 +165,30 @@ public class aplicacao extends JFrame {
 			lblNomeDoArquivo.setBounds(10, 93, 99, 14);
 			jPanel_conteudo.add(lblNomeDoArquivo);
 			
-			JLabel lblNewLabel = new JLabel(".");
-			lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 11));
-			lblNewLabel.setBounds(122, 93, 502, 14);
-			jPanel_conteudo.add(lblNewLabel);
+			lblNomeArquivo = new JLabel("");
+			lblNomeArquivo.setFont(new Font("Tahoma", Font.BOLD, 11));
+			lblNomeArquivo.setBounds(122, 93, 502, 14);
+			jPanel_conteudo.add(lblNomeArquivo);
 			
 			JLabel lblColunas = new JLabel("Colunas:");
 			lblColunas.setBounds(10, 117, 46, 14);
 			jPanel_conteudo.add(lblColunas);
 			
-			JLabel lblNewLabel_1 = new JLabel(".");
-			lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 11));
-			lblNewLabel_1.setBounds(122, 118, 161, 14);
-			jPanel_conteudo.add(lblNewLabel_1);
+			lblColunaSra = new JLabel("");
+			lblColunaSra.setFont(new Font("Tahoma", Font.BOLD, 11));
+			lblColunaSra.setBounds(122, 118, 161, 14);
+			jPanel_conteudo.add(lblColunaSra);
 			
 			JLabel lblLinhas = new JLabel("Linhas:");
 			lblLinhas.setBounds(10, 142, 46, 14);
 			jPanel_conteudo.add(lblLinhas);
 			
-			JLabel lblNewLabel_2 = new JLabel(".");
-			lblNewLabel_2.setFont(new Font("Tahoma", Font.BOLD, 11));
-			lblNewLabel_2.setBounds(122, 142, 161, 14);
-			jPanel_conteudo.add(lblNewLabel_2);
+			lblLinhaSra = new JLabel("");
+			lblLinhaSra.setFont(new Font("Tahoma", Font.BOLD, 11));
+			lblLinhaSra.setBounds(122, 142, 161, 14);
+			jPanel_conteudo.add(lblLinhaSra);
 			
-			JLabel lblColoqueAPlanilha_1 = new JLabel("Coloque a planilha com os candidatos ao benef\u00EDcio(NAPSI):");
+			JLabel lblColoqueAPlanilha_1 = new JLabel("Coloque a planilha com os candidatos ao benef\u00EDcio (NAPSI):");
 			lblColoqueAPlanilha_1.setBounds(10, 234, 293, 14);
 			jPanel_conteudo.add(lblColoqueAPlanilha_1);
 			
@@ -197,10 +204,14 @@ public class aplicacao extends JFrame {
 			jPanel_conteudo.add(getLabel_1());
 			jPanel_conteudo.add(getLabel_2());
 			jPanel_conteudo.add(getLblNewLabel_3());
-			jPanel_conteudo.add(getTextField_2());
 			jPanel_conteudo.add(getLblAPlanilhaInforma());
-			jPanel_conteudo.add(getTextField_3());
 			jPanel_conteudo.add(getBtnComparar());
+			
+			comboBoxSra = new JComboBox();
+			//comboBoxSra.setModel(new DefaultComboBoxModel(new String[] {"teste"}));
+			comboBoxSra.setBounds(13, 189, 236, 20);
+			jPanel_conteudo.add(comboBoxSra);
+			jPanel_conteudo.add(getComboBox());
 		}
 		return jPanel_conteudo;
 	}
@@ -218,12 +229,14 @@ public class aplicacao extends JFrame {
 			gridBagConstraints49.gridy = 0;
 			GridBagConstraints gridBagConstraints5 = new GridBagConstraints();
 			gridBagConstraints5.gridx = 0;
-			gridBagConstraints5.fill = GridBagConstraints.HORIZONTAL;
+			gridBagConstraints5.fill = GridBagConstraints.BOTH;
 			gridBagConstraints5.weightx = 1.0;
 			gridBagConstraints5.insets = new Insets(2, 0, 0, 0);
 			gridBagConstraints5.gridy = 1;
 			jPanel_rodape = new JPanel();
-			jPanel_rodape.setLayout(new GridBagLayout());
+			GridBagLayout gbl_jPanel_rodape = new GridBagLayout();
+			gbl_jPanel_rodape.rowWeights = new double[]{0.0, 1.0};
+			jPanel_rodape.setLayout(gbl_jPanel_rodape);
 			jPanel_rodape.setBackground(new Color(255, 51, 51));
 			jPanel_rodape.add(getJPanel5(), gridBagConstraints5);
 			jPanel_rodape.add(getJPanel_toolBars(), gridBagConstraints49);
@@ -268,78 +281,91 @@ public class aplicacao extends JFrame {
 	 */
 	private JPanel getJPanel5() {
 		if (jPanel5 == null) {
-			GridBagConstraints gridBagConstraints53 = new GridBagConstraints();
-			gridBagConstraints53.gridx = 0;
-			gridBagConstraints53.anchor = GridBagConstraints.WEST;
-			gridBagConstraints53.gridwidth = 1;
-			gridBagConstraints53.gridheight = 5;
-			gridBagConstraints53.gridy = 0;
 			GridBagConstraints gridBagConstraints31 = new GridBagConstraints();
-			gridBagConstraints31.gridx = 1;
+			gridBagConstraints31.gridx = 2;
 			gridBagConstraints31.anchor = GridBagConstraints.EAST;
 			gridBagConstraints31.weightx = 0.0;
-			gridBagConstraints31.insets = new Insets(0, 0, 4, 4);
-			gridBagConstraints31.gridy = 4;
+			gridBagConstraints31.insets = new Insets(0, 0, 0, 4);
+			gridBagConstraints31.gridy = 5;
 			jLabel21 = new JLabel();
 			jLabel21.setText("Ramal: 15");
 			jLabel21.setFont(new Font("Dialog", Font.PLAIN, 8));
 			GridBagConstraints gridBagConstraints30 = new GridBagConstraints();
 			gridBagConstraints30.fill = GridBagConstraints.BOTH;
-			gridBagConstraints30.gridx = 1;
+			gridBagConstraints30.gridx = 2;
 			gridBagConstraints30.weightx = 0.0;
-			gridBagConstraints30.insets = new Insets(0, 0, 0, 4);
-			gridBagConstraints30.gridy = 3;
+			gridBagConstraints30.insets = new Insets(0, 0, 5, 4);
+			gridBagConstraints30.gridy = 4;
 			jLabel20 = new JLabel();
 			jLabel20.setText("N\u00FAcleo de Apoio e Pedag\u00F3gico e Psicosocial");
 			jLabel20.setFont(new Font("Dialog", Font.PLAIN, 8));
-			GridBagConstraints gridBagConstraints27 = new GridBagConstraints();
-			gridBagConstraints27.gridx = 1;
-			gridBagConstraints27.anchor = GridBagConstraints.EAST;
-			gridBagConstraints27.weightx = 0.0;
-			gridBagConstraints27.insets = new Insets(4, 0, 0, 4);
-			gridBagConstraints27.gridy = 1;
-			jLabel17 = new JLabel();
-			jLabel17.setText("NAPSI");
-			GridBagConstraints gridBagConstraints29 = new GridBagConstraints();
-			gridBagConstraints29.gridx = 0;
-			gridBagConstraints29.anchor = GridBagConstraints.EAST;
-			gridBagConstraints29.insets = new Insets(4, 4, 0, 10);
-			gridBagConstraints29.weightx = 1.0;
-			gridBagConstraints29.gridy = 1;
-			jLabel19 = new JLabel();
-			jLabel19.setText("NGTI");
 			GridBagConstraints gridBagConstraints28 = new GridBagConstraints();
-			gridBagConstraints28.gridx = 0;
+			gridBagConstraints28.gridx = 1;
 			gridBagConstraints28.anchor = GridBagConstraints.EAST;
-			gridBagConstraints28.insets = new Insets(0, 4, 4, 10);
+			gridBagConstraints28.insets = new Insets(0, 4, 0, 10);
 			gridBagConstraints28.weightx = 1.0;
-			gridBagConstraints28.gridy = 4;
+			gridBagConstraints28.gridy = 5;
 			jLabel18 = new JLabel();
 			jLabel18.setText("Ramal.: 32");
 			jLabel18.setFont(new Font("Dialog", Font.PLAIN, 8));
 			GridBagConstraints gridBagConstraints26 = new GridBagConstraints();
-			gridBagConstraints26.gridx = 0;
+			gridBagConstraints26.gridx = 1;
 			gridBagConstraints26.anchor = GridBagConstraints.EAST;
-			gridBagConstraints26.insets = new Insets(0, 4, 0, 10);
+			gridBagConstraints26.insets = new Insets(0, 4, 5, 10);
 			gridBagConstraints26.weightx = 1.0;
-			gridBagConstraints26.gridy = 3;
+			gridBagConstraints26.gridy = 4;
 			jLabel16 = new JLabel();
 			jLabel16.setText("Núcleo de Gestão em Tecnologia da Informação");
 			jLabel16.setFont(new Font("Dialog", Font.PLAIN, 8));
 			jPanel5 = new JPanel();
 			GridBagLayout gbl_jPanel5 = new GridBagLayout();
-			gbl_jPanel5.rowWeights = new double[]{0.0, 0.0, 0.0, 1.0, 0.0};
-			gbl_jPanel5.columnWeights = new double[]{0.0, 1.0};
+			gbl_jPanel5.columnWidths = new int[]{1, 251, 0};
+			gbl_jPanel5.rowHeights = new int[]{0, 0, 0, 0, 0, 9};
+			gbl_jPanel5.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 1.0, 0.0};
+			gbl_jPanel5.columnWeights = new double[]{0.0, 0.0, 1.0};
 			jPanel5.setLayout(gbl_jPanel5);
 			jPanel5.setFont(new Font("Dialog", Font.PLAIN, 10));
 			jPanel5.setBackground(new Color(204, 255, 204));
+			GridBagConstraints gridBagConstraints29 = new GridBagConstraints();
+			gridBagConstraints29.gridx = 1;
+			gridBagConstraints29.anchor = GridBagConstraints.EAST;
+			gridBagConstraints29.insets = new Insets(4, 4, 5, 10);
+			gridBagConstraints29.weightx = 1.0;
+			gridBagConstraints29.gridy = 0;
+			jLabel19 = new JLabel();
+			jLabel19.setText("NGTI");
+			jPanel5.add(jLabel19, gridBagConstraints29);
+			GridBagConstraints gridBagConstraints27 = new GridBagConstraints();
+			gridBagConstraints27.gridx = 2;
+			gridBagConstraints27.anchor = GridBagConstraints.EAST;
+			gridBagConstraints27.weightx = 0.0;
+			gridBagConstraints27.insets = new Insets(4, 0, 5, 4);
+			gridBagConstraints27.gridy = 0;
+			jLabel17 = new JLabel();
+			jLabel17.setText("NAPSI");
+			jPanel5.add(jLabel17, gridBagConstraints27);
+			GridBagConstraints gbc_label_3 = new GridBagConstraints();
+			gbc_label_3.anchor = GridBagConstraints.WEST;
+			gbc_label_3.insets = new Insets(0, 0, 5, 5);
+			gbc_label_3.gridx = 1;
+			gbc_label_3.gridy = 1;
+			jPanel5.add(getLabel_3(), gbc_label_3);
+			GridBagConstraints gbc_label_4 = new GridBagConstraints();
+			gbc_label_4.anchor = GridBagConstraints.WEST;
+			gbc_label_4.insets = new Insets(0, 0, 5, 5);
+			gbc_label_4.gridx = 1;
+			gbc_label_4.gridy = 2;
+			jPanel5.add(getLabel_4(), gbc_label_4);
+			GridBagConstraints gbc_label_5 = new GridBagConstraints();
+			gbc_label_5.anchor = GridBagConstraints.WEST;
+			gbc_label_5.insets = new Insets(0, 0, 5, 5);
+			gbc_label_5.gridx = 1;
+			gbc_label_5.gridy = 3;
+			jPanel5.add(getLabel_5(), gbc_label_5);
 			jPanel5.add(jLabel16, gridBagConstraints26);
 			jPanel5.add(jLabel18, gridBagConstraints28);
-			jPanel5.add(jLabel19, gridBagConstraints29);
-			jPanel5.add(jLabel17, gridBagConstraints27);
 			jPanel5.add(jLabel20, gridBagConstraints30);
 			jPanel5.add(jLabel21, gridBagConstraints31);
-			jPanel5.add(getJPanel10(), gridBagConstraints53);
 		}
 		return jPanel5;
 	}
@@ -359,19 +385,24 @@ public class aplicacao extends JFrame {
 			GridBagConstraints gridBagConstraints48 = new GridBagConstraints();
 			gridBagConstraints48.gridx = 0;
 			gridBagConstraints48.weightx = 1.0;
-			gridBagConstraints48.anchor = GridBagConstraints.WEST;
-			gridBagConstraints48.insets = new Insets(2, 0, 5, 5);
+			gridBagConstraints48.insets = new Insets(2, 0, 0, 5);
 			gridBagConstraints48.gridy = 0;
 			GridBagConstraints gridBagConstraints47 = new GridBagConstraints();
-			gridBagConstraints47.gridx = 1;
-			gridBagConstraints47.insets = new Insets(5, 0, 5, 5);
+			gridBagConstraints47.gridx = 2;
+			gridBagConstraints47.insets = new Insets(5, 0, 0, 0);
 			gridBagConstraints47.weightx = 1.0;
-			gridBagConstraints47.anchor = GridBagConstraints.EAST;
 			gridBagConstraints47.gridy = 0;
 			jPanel_toolBars = new JPanel();
 			jPanel_toolBars.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
 			jPanel_toolBars.setLayout(new GridBagLayout());
 			jPanel_toolBars.setBackground(Color.white);
+			
+			JLabel lblObsOBoto = new JLabel("Obs: O bot\u00E3o \"Comparar\" ir\u00E1 criar um novo arquivo com a interse\u00E7\u00E3o dos dados.");
+			GridBagConstraints gbc_lblObsOBoto = new GridBagConstraints();
+			gbc_lblObsOBoto.insets = new Insets(0, 0, 0, 5);
+			gbc_lblObsOBoto.gridx = 1;
+			gbc_lblObsOBoto.gridy = 0;
+			jPanel_toolBars.add(lblObsOBoto, gbc_lblObsOBoto);
 			jPanel_toolBars.add(getJButton_fechar(), gridBagConstraints47);
 			jPanel_toolBars.add(getJButton_ajuda(), gridBagConstraints48);
 		}
@@ -408,53 +439,9 @@ public class aplicacao extends JFrame {
 		if (jButton_ajuda == null) {
 			jButton_ajuda = new JButton();
 			jButton_ajuda.setText("Ajuda");
-			jButton_ajuda.setVisible(false);
+			jButton_ajuda.setVisible(true);
 		}
 		return jButton_ajuda;
-	}
-
-	/**
-	 * This method initializes jPanel10	
-	 * 	
-	 * @return javax.swing.JPanel	
-	 */
-	private JPanel getJPanel10() {
-		if (jPanel10 == null) {
-			GridBagConstraints gridBagConstraints52 = new GridBagConstraints();
-			gridBagConstraints52.gridx = 0;
-			gridBagConstraints52.anchor = GridBagConstraints.WEST;
-			gridBagConstraints52.fill = GridBagConstraints.HORIZONTAL;
-			gridBagConstraints52.insets = new Insets(0, 4, 4, 0);
-			gridBagConstraints52.gridy = 2;
-			jLabel30 = new JLabel();
-			jLabel30.setText("Tel.: (73) 3536-1210");
-			jLabel30.setFont(new Font("Dialog", Font.PLAIN, 10));
-			GridBagConstraints gridBagConstraints51 = new GridBagConstraints();
-			gridBagConstraints51.gridx = 0;
-			gridBagConstraints51.anchor = GridBagConstraints.WEST;
-			gridBagConstraints51.fill = GridBagConstraints.HORIZONTAL;
-			gridBagConstraints51.insets = new Insets(0, 4, 0, 0);
-			gridBagConstraints51.gridy = 1;
-			jLabel29 = new JLabel();
-			jLabel29.setText("BR 420 (Rodovia Santa Inês – Ubaíra), Zona Rural, Bahia");
-			jLabel29.setFont(new Font("Dialog", Font.PLAIN, 10));
-			GridBagConstraints gridBagConstraints50 = new GridBagConstraints();
-			gridBagConstraints50.gridx = 0;
-			gridBagConstraints50.anchor = GridBagConstraints.WEST;
-			gridBagConstraints50.fill = GridBagConstraints.HORIZONTAL;
-			gridBagConstraints50.insets = new Insets(4, 4, 0, 0);
-			gridBagConstraints50.gridy = 0;
-			jLabel28 = new JLabel();
-			jLabel28.setText("IF Baiano – Campus Santa Inês");
-			jLabel28.setFont(new Font("Dialog", Font.PLAIN, 10));
-			jPanel10 = new JPanel();
-			jPanel10.setLayout(new GridBagLayout());
-			jPanel10.setBackground(new Color(204, 255, 204));
-			jPanel10.add(jLabel28, gridBagConstraints50);
-			jPanel10.add(jLabel29, gridBagConstraints51);
-			jPanel10.add(jLabel30, gridBagConstraints52);
-		}
-		return jPanel10;
 	}
 
 	
@@ -492,20 +479,6 @@ public class aplicacao extends JFrame {
 	}
 
 	/**
-	 * @param args
-	 */
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		SwingUtilities.invokeLater(new Runnable() {
-			public void run() {
-				aplicacao thisClass = new aplicacao();
-				thisClass.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-				thisClass.setVisible(true);
-			}
-		});
-	}
-
-	/**
 	 * This is the default constructor
 	 */
 	public aplicacao() {
@@ -520,10 +493,10 @@ public class aplicacao extends JFrame {
 	 */
 	private void initialize() {
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setSize(650, 687);
+		this.setSize(650, 700);
 		this.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/br/edu/ifbaiano/napsi/excelcheck/img/LogoIF.jpg")));
 		this.setContentPane(getJContentPane());
-		this.setTitle("Calculadora");
+		this.setTitle("Excel Check");
 		this.setLocationRelativeTo(null);
 		try {
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
@@ -628,39 +601,54 @@ public class aplicacao extends JFrame {
 	}
 	private JLabel getLblNewLabel_3() {
 		if (lblNewLabel_3 == null) {
-			lblNewLabel_3 = new JLabel("A planilha informada possue x colunas. Informe qual ser\u00E1 usada para compara\u00E7\u00E3o:");
+			lblNewLabel_3 = new JLabel("Informe qual coluna ser\u00E1 usada para compara\u00E7\u00E3o:");
 			lblNewLabel_3.setBounds(10, 167, 415, 14);
 		}
 		return lblNewLabel_3;
 	}
-	private JTextField getTextField_2() {
-		if (textField_2 == null) {
-			textField_2 = new JTextField();
-			textField_2.setBounds(10, 189, 86, 20);
-			textField_2.setColumns(10);
-		}
-		return textField_2;
-	}
 	private JLabel getLblAPlanilhaInforma() {
 		if (lblAPlanilhaInforma == null) {
-			lblAPlanilhaInforma = new JLabel("A planilha informada possue x colunas. Informe qual ser\u00E1 usada para compara\u00E7\u00E3o:");
+			lblAPlanilhaInforma = new JLabel("Informe qual coluna ser\u00E1 usada para compara\u00E7\u00E3o:");
 			lblAPlanilhaInforma.setBounds(10, 362, 415, 14);
 		}
 		return lblAPlanilhaInforma;
 	}
-	private JTextField getTextField_3() {
-		if (textField_3 == null) {
-			textField_3 = new JTextField();
-			textField_3.setBounds(10, 387, 86, 20);
-			textField_3.setColumns(10);
-		}
-		return textField_3;
-	}
 	private JButton getBtnComparar() {
 		if (btnComparar == null) {
 			btnComparar = new JButton("Comparar");
-			btnComparar.setBounds(266, 436, 89, 23);
+			btnComparar.setBounds(266, 410, 89, 23);
 		}
 		return btnComparar;
+	}
+	private JLabel getLabel_3() {
+		if (label_3 == null) {
+			label_3 = new JLabel();
+			label_3.setText("IF Baiano \u2013 Campus Santa In\u00EAs");
+			label_3.setFont(new Font("Dialog", Font.PLAIN, 10));
+		}
+		return label_3;
+	}
+	private JLabel getLabel_4() {
+		if (label_4 == null) {
+			label_4 = new JLabel();
+			label_4.setText("BR 420 (Rodovia Santa In\u00EAs \u2013 Uba\u00EDra), Zona Rural, Bahia");
+			label_4.setFont(new Font("Dialog", Font.PLAIN, 10));
+		}
+		return label_4;
+	}
+	private JLabel getLabel_5() {
+		if (label_5 == null) {
+			label_5 = new JLabel();
+			label_5.setText("Tel.: (73) 3536-1210");
+			label_5.setFont(new Font("Dialog", Font.PLAIN, 10));
+		}
+		return label_5;
+	}
+	private JComboBox getComboBox() {
+		if (comboBox == null) {
+			comboBox = new JComboBox();
+			comboBox.setBounds(10, 387, 28, 20);
+		}
+		return comboBox;
 	}
 }  //  @jve:decl-index=0:visual-constraint="10,10"
