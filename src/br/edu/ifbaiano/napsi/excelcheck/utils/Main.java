@@ -1,29 +1,19 @@
 package br.edu.ifbaiano.napsi.excelcheck.utils;
  
   
-import java.io.File;  
-import java.io.IOException; 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
-import java.util.Map;
 
-import javax.swing.JOptionPane;
-
-import com.sun.org.apache.bcel.internal.generic.GETSTATIC;
-
-import jxl.Cell;  
 import jxl.CellView;
-import jxl.DateCell;  
-import jxl.NumberCell;  
-import jxl.Sheet;  
-import jxl.Workbook;  
+import jxl.Sheet;
+import jxl.Workbook;
 import jxl.WorkbookSettings;
-import jxl.format.Colour;
-import jxl.read.biff.BiffException;  
+import jxl.read.biff.BiffException;
 import jxl.write.Label;
-import jxl.write.Number;
 import jxl.write.WritableCellFormat;
 import jxl.write.WritableFont;
 import jxl.write.WritableSheet;
@@ -81,23 +71,30 @@ public class Main {
 		  return colinha;
 		}
 	
-	public void carregarXlsNapsi (File napsi) throws BiffException, IOException{      
-	      //carregar a planilha extraida do Nucleo psico social 
+	public HashMap<String, Integer> carregarXlsNapsi (File napsi) throws BiffException, IOException{
+		  //carregar a planilha extraída do SRA  
 	      workbookPsicoSocial = Workbook.getWorkbook(napsi.getAbsoluteFile());
-		  
-		  /* pega a primeira planilha dentro do arquivo XLS do SRA*/  
+	      
+	      /* pega a primeira planilha dentro do arquivo XLS do SRA*/  
 		  sheetPsico = workbookPsicoSocial.getSheet(0);
 		  
 		  qtdLinhasPsico = sheetPsico.getRows();
+		  int qtdColuna = sheetPsico.getColumns();
+		  
+		  HashMap<String, Integer> colinha = new HashMap<String, Integer>();
+		  colinha.put("linhas", qtdLinhasPsico);
+		  colinha.put("colunas", qtdColuna);
+		  
+		  return colinha;
 		}
 	
 	
-	public void carregarXLS () throws BiffException, IOException{
+	public void carregarXLS (File sra, File napsi) throws BiffException, IOException{
 	  //carregar a planilha extraida do SRA  
-      workbookSRA = Workbook.getWorkbook(new File("xls/Pasta1.xls").getAbsoluteFile());
+      workbookSRA = Workbook.getWorkbook(sra.getAbsoluteFile());
       
       //carregar a planilha extraida do Nucleo psico social 
-      workbookPsicoSocial = Workbook.getWorkbook(new File("xls/Pasta2.xls").getAbsoluteFile());
+      workbookPsicoSocial = Workbook.getWorkbook(napsi.getAbsoluteFile());
       
       /* pega a primeira planilha dentro do arquivo XLS do SRA*/  
 	  sheetSRA = workbookSRA.getSheet(0);
@@ -116,7 +113,7 @@ public class Main {
 	 */
 	
 	// Método responsável por fazer a escrita, a inserção dos dados na planilha
-	public void insere() throws IOException, WriteException, BiffException {
+	public void insere(File fileSra, File fileNapsi) throws IOException, WriteException, BiffException {
 		// Cria um novo arquivo
 		File arquivo = new File(inputArquivo);
 		WorkbookSettings wbSettings = new WorkbookSettings();
@@ -127,7 +124,7 @@ public class Main {
 		// Define um nome para a planilha
 		workbook.createSheet("Plan1", 0);
 		WritableSheet excelSheet = workbook.getSheet(0);
-		carregarXLS();//ler os arquivos excel
+		carregarXLS(fileSra, fileNapsi);//ler os arquivos excel
 		criaLabel(excelSheet);
 		comprararPlanilhas(excelSheet);
 		 
@@ -144,12 +141,21 @@ public class Main {
 		return colunas;
 	}
 	
+	public String [] obterColunasNapsi (){
+		int qtdColunas = sheetSRA.getColumns();
+		colunas = new String [qtdColunas];
+		for (int i = 0; i < qtdColunas; i++) {
+			colunas [i] = sheetSRA.getCell(i, 0).getContents();
+		}
+		return colunas;
+	}
+	
 	public String [] obterColunas (){
 		int qtdColunas = sheetPsico.getColumns();
 		colunas = new String [qtdColunas];
 		for (int i = 0; i < qtdColunas; i++) {
 			colunas [i] = sheetPsico.getCell(i, 0).getContents();
-			System.out.print(colunas[i] +" | ");
+			//System.out.print(colunas[i] +" | ");
 		}
 		return colunas;
 	}
@@ -221,7 +227,7 @@ public class Main {
         				addconteudoLinhas(sheet, 0, match, match+"");
         				linha++;
         			}
-        			System.out.println(""+sheetPsico.getCell(nColunaComparacaoSRA,i).getContents());
+        			//System.out.println(""+sheetPsico.getCell(nColunaComparacaoSRA,i).getContents());
         		}
         	}        	
         }
@@ -236,7 +242,7 @@ public class Main {
 	}
           
     /** Creates a new instance of Main */  
-    public static void main(String[] args ) {  
+/*    public static void main(String[] args ) {  
     	
     	Main m = new Main();
     	m.setOutputFile("xls/novoarquivo.xls");
@@ -258,5 +264,5 @@ public class Main {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-    }     
+    }  */   
 }  

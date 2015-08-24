@@ -8,9 +8,12 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
+import java.awt.event.KeyEvent;
+
 import javax.swing.AbstractAction;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -20,10 +23,7 @@ import javax.swing.KeyStroke;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
-import java.awt.event.KeyEvent;
 import javax.swing.border.MatteBorder;
-import javax.swing.JComboBox;
-import javax.swing.DefaultComboBoxModel;
 
 public class aplicacao extends JFrame {
 
@@ -34,6 +34,7 @@ public class aplicacao extends JFrame {
 	private JPanel jPanel_conteudo = null;
 	private JPanel jPanel_rodape = null;
 	private JPanel jPanel_titulo = null;
+	private JPanel jPanel10 = null;
 	private JLabel jLabel4 = null;
 	private JPanel jPanel5 = null;
 	private JLabel jLabel16 = null;
@@ -50,28 +51,34 @@ public class aplicacao extends JFrame {
 	private JLabel jLabel28 = null;
 	private JLabel jLabel29 = null;
 	private JLabel jLabel30 = null;
-	private JLabel jLabel_imgMEC = null;
-	private JTextField textField_1;
-	private JLabel lblNomeDoArquivo_1;
-	private JLabel label;
-	private JLabel lblColunas_1;
-	private JLabel lblLinhas_1;
-	private JLabel label_1;
-	private JLabel label_2;
-	private JLabel lblNewLabel_3;
-	private JLabel lblAPlanilhaInforma;
-	private JButton btnComparar;
+	private JLabel jLabel_imgMEC = null;	
 	private JLabel label_3;
 	private JLabel label_4;
 	private JLabel label_5;
-	protected JButton btnNAPSI;
-	protected JButton btnSRA;
-	protected JTextField diretorioSRA;
-	protected JLabel lblNomeArquivo;
+	private JPanel panel;
+	private JLabel label;
+	private JLabel label_1;
+	private JLabel label_2;
+	private JLabel label_6;
+	private JLabel label_7;
+	private JLabel label_8;
+	private JLabel label_9;
+	private JLabel label_10;
+	private JLabel label_11;
+	private JLabel label_12;
+	protected JComboBox comboBoxNapsi;
+	protected JButton btnComparar;
+	protected JLabel lblNomeSra;
 	protected JLabel lblColunaSra;
 	protected JLabel lblLinhaSra;
+	protected JLabel lblNomeNapsi;
+	protected JLabel lblColunasNapsi;
+	protected JLabel lblLinhaNapsi;
+	protected JTextField diretorioSRA;
+	protected JButton btnSRA;
 	protected JComboBox comboBoxSra;
-	private JComboBox comboBox;
+	protected JTextField diretorioNapsi;
+	protected JButton btnNAPSI;
 	
 	
 	
@@ -136,82 +143,16 @@ public class aplicacao extends JFrame {
 	private JPanel getJPanel_conteudo() {
 		if (jPanel_conteudo == null) {
 			jLabel27 = new JLabel();
-			jLabel27.setBounds(631, 26, 3, 346);
 			jLabel27.setText(" ");
 			jLabel26 = new JLabel();
-			jLabel26.setBounds(0, 26, 3, 346);
 			jLabel26.setText(" ");
 			jPanel_conteudo = new JPanel();
 			jPanel_conteudo.setBackground(Color.WHITE);
-			jPanel_conteudo.setLayout(null);
-			jPanel_conteudo.add(getJPanel_titulo());
+			jPanel_conteudo.setLayout(new BorderLayout(0, 0));
 			jPanel_conteudo.add(jLabel26);
 			jPanel_conteudo.add(jLabel27);
-			
-			JLabel lblColoqueAPlanilha = new JLabel("Coloque a planilha dos alunos cadastrados (SRA):");
-			lblColoqueAPlanilha.setBounds(10, 37, 293, 14);
-			jPanel_conteudo.add(lblColoqueAPlanilha);
-			
-			diretorioSRA = new JTextField();
-			diretorioSRA.setBounds(10, 62, 540, 20);
-			jPanel_conteudo.add(diretorioSRA);
-			diretorioSRA.setColumns(10);
-			
-			btnSRA = new JButton("");
-			btnSRA.setBounds(560, 61, 58, 23);
-			jPanel_conteudo.add(btnSRA);
-			
-			JLabel lblNomeDoArquivo = new JLabel("Nome do arquivo:");
-			lblNomeDoArquivo.setBounds(10, 93, 99, 14);
-			jPanel_conteudo.add(lblNomeDoArquivo);
-			
-			lblNomeArquivo = new JLabel("");
-			lblNomeArquivo.setFont(new Font("Tahoma", Font.BOLD, 11));
-			lblNomeArquivo.setBounds(122, 93, 502, 14);
-			jPanel_conteudo.add(lblNomeArquivo);
-			
-			JLabel lblColunas = new JLabel("Colunas:");
-			lblColunas.setBounds(10, 117, 46, 14);
-			jPanel_conteudo.add(lblColunas);
-			
-			lblColunaSra = new JLabel("");
-			lblColunaSra.setFont(new Font("Tahoma", Font.BOLD, 11));
-			lblColunaSra.setBounds(122, 118, 161, 14);
-			jPanel_conteudo.add(lblColunaSra);
-			
-			JLabel lblLinhas = new JLabel("Linhas:");
-			lblLinhas.setBounds(10, 142, 46, 14);
-			jPanel_conteudo.add(lblLinhas);
-			
-			lblLinhaSra = new JLabel("");
-			lblLinhaSra.setFont(new Font("Tahoma", Font.BOLD, 11));
-			lblLinhaSra.setBounds(122, 142, 161, 14);
-			jPanel_conteudo.add(lblLinhaSra);
-			
-			JLabel lblColoqueAPlanilha_1 = new JLabel("Coloque a planilha com os candidatos ao benef\u00EDcio (NAPSI):");
-			lblColoqueAPlanilha_1.setBounds(10, 234, 293, 14);
-			jPanel_conteudo.add(lblColoqueAPlanilha_1);
-			
-			textField_1 = new JTextField();
-			textField_1.setBounds(10, 256, 540, 20);
-			jPanel_conteudo.add(textField_1);
-			textField_1.setColumns(10);
-			jPanel_conteudo.add(getBtnNAPSI());
-			jPanel_conteudo.add(getLblNomeDoArquivo_1());
-			jPanel_conteudo.add(getLabel());
-			jPanel_conteudo.add(getLblColunas_1());
-			jPanel_conteudo.add(getLblLinhas_1());
-			jPanel_conteudo.add(getLabel_1());
-			jPanel_conteudo.add(getLabel_2());
-			jPanel_conteudo.add(getLblNewLabel_3());
-			jPanel_conteudo.add(getLblAPlanilhaInforma());
-			jPanel_conteudo.add(getBtnComparar());
-			
-			comboBoxSra = new JComboBox();
-			//comboBoxSra.setModel(new DefaultComboBoxModel(new String[] {"teste"}));
-			comboBoxSra.setBounds(13, 189, 236, 20);
-			jPanel_conteudo.add(comboBoxSra);
-			jPanel_conteudo.add(getComboBox());
+			jPanel_conteudo.add(getPanel(), BorderLayout.CENTER);
+			jPanel_conteudo.add(getJPanel_titulo(), BorderLayout.NORTH);
 		}
 		return jPanel_conteudo;
 	}
@@ -252,11 +193,10 @@ public class aplicacao extends JFrame {
 	private JPanel getJPanel_titulo() {
 		if (jPanel_titulo == null) {
 			GridBagConstraints gridBagConstraints6 = new GridBagConstraints();
-			gridBagConstraints6.gridx = 0;
+			gridBagConstraints6.anchor = GridBagConstraints.SOUTH;
 			gridBagConstraints6.fill = GridBagConstraints.HORIZONTAL;
-			gridBagConstraints6.anchor = GridBagConstraints.NORTH;
+			gridBagConstraints6.gridx = 0;
 			gridBagConstraints6.weightx = 1.0;
-			gridBagConstraints6.insets = new Insets(2, 0, 0, 0);
 			gridBagConstraints6.gridy = 0;
 			jLabel4 = new JLabel();
 			jLabel4.setText("Compara\u00E7\u00E3o de Planilhas");
@@ -266,8 +206,10 @@ public class aplicacao extends JFrame {
 			jLabel4.setOpaque(true);
 			jLabel4.setForeground(Color.white);
 			jPanel_titulo = new JPanel();
-			jPanel_titulo.setBounds(0, 0, 634, 26);
-			jPanel_titulo.setLayout(new GridBagLayout());
+			GridBagLayout gbl_jPanel_titulo = new GridBagLayout();
+			gbl_jPanel_titulo.rowWeights = new double[]{1.0};
+			gbl_jPanel_titulo.rowHeights = new int[]{26};
+			jPanel_titulo.setLayout(gbl_jPanel_titulo);
 			jPanel_titulo.setBackground(new Color(255, 51, 51));
 			jPanel_titulo.add(jLabel4, gridBagConstraints6);
 		}
@@ -281,93 +223,115 @@ public class aplicacao extends JFrame {
 	 */
 	private JPanel getJPanel5() {
 		if (jPanel5 == null) {
+			GridBagConstraints gridBagConstraints53 = new GridBagConstraints();
+			gridBagConstraints53.gridx = 0;
+			gridBagConstraints53.anchor = GridBagConstraints.WEST;
+			gridBagConstraints53.gridheight = 5;
+			gridBagConstraints53.gridy = 0;
 			GridBagConstraints gridBagConstraints31 = new GridBagConstraints();
-			gridBagConstraints31.gridx = 2;
+			gridBagConstraints31.gridx = 1;
 			gridBagConstraints31.anchor = GridBagConstraints.EAST;
 			gridBagConstraints31.weightx = 0.0;
-			gridBagConstraints31.insets = new Insets(0, 0, 0, 4);
-			gridBagConstraints31.gridy = 5;
+			gridBagConstraints31.insets = new Insets(0, 0, 4, 4);
+			gridBagConstraints31.gridy = 4;
 			jLabel21 = new JLabel();
-			jLabel21.setText("Ramal: 15");
+			jLabel21.setText("Ramal.: 13");
 			jLabel21.setFont(new Font("Dialog", Font.PLAIN, 8));
 			GridBagConstraints gridBagConstraints30 = new GridBagConstraints();
-			gridBagConstraints30.fill = GridBagConstraints.BOTH;
-			gridBagConstraints30.gridx = 2;
+			gridBagConstraints30.gridx = 1;
+			gridBagConstraints30.anchor = GridBagConstraints.EAST;
 			gridBagConstraints30.weightx = 0.0;
-			gridBagConstraints30.insets = new Insets(0, 0, 5, 4);
-			gridBagConstraints30.gridy = 4;
+			gridBagConstraints30.insets = new Insets(0, 0, 0, 4);
+			gridBagConstraints30.gridy = 3;
 			jLabel20 = new JLabel();
-			jLabel20.setText("N\u00FAcleo de Apoio e Pedag\u00F3gico e Psicosocial");
+			jLabel20.setText("Núcleo de Apoio a Gestão de Pessoas");
 			jLabel20.setFont(new Font("Dialog", Font.PLAIN, 8));
+			GridBagConstraints gridBagConstraints27 = new GridBagConstraints();
+			gridBagConstraints27.gridx = 1;
+			gridBagConstraints27.anchor = GridBagConstraints.EAST;
+			gridBagConstraints27.weightx = 0.0;
+			gridBagConstraints27.insets = new Insets(4, 0, 0, 4);
+			gridBagConstraints27.gridy = 1;
+			jLabel17 = new JLabel();
+			jLabel17.setText("NAGP");
+			GridBagConstraints gridBagConstraints29 = new GridBagConstraints();
+			gridBagConstraints29.gridx = 0;
+			gridBagConstraints29.anchor = GridBagConstraints.EAST;
+			gridBagConstraints29.insets = new Insets(4, 4, 0, 10);
+			gridBagConstraints29.weightx = 1.0;
+			gridBagConstraints29.gridy = 1;
+			jLabel19 = new JLabel();
+			jLabel19.setText("NGTI");
 			GridBagConstraints gridBagConstraints28 = new GridBagConstraints();
-			gridBagConstraints28.gridx = 1;
+			gridBagConstraints28.gridx = 0;
 			gridBagConstraints28.anchor = GridBagConstraints.EAST;
-			gridBagConstraints28.insets = new Insets(0, 4, 0, 10);
+			gridBagConstraints28.insets = new Insets(0, 4, 4, 10);
 			gridBagConstraints28.weightx = 1.0;
-			gridBagConstraints28.gridy = 5;
+			gridBagConstraints28.gridy = 4;
 			jLabel18 = new JLabel();
 			jLabel18.setText("Ramal.: 32");
 			jLabel18.setFont(new Font("Dialog", Font.PLAIN, 8));
 			GridBagConstraints gridBagConstraints26 = new GridBagConstraints();
-			gridBagConstraints26.gridx = 1;
+			gridBagConstraints26.gridx = 0;
 			gridBagConstraints26.anchor = GridBagConstraints.EAST;
-			gridBagConstraints26.insets = new Insets(0, 4, 5, 10);
+			gridBagConstraints26.insets = new Insets(0, 4, 0, 10);
 			gridBagConstraints26.weightx = 1.0;
-			gridBagConstraints26.gridy = 4;
+			gridBagConstraints26.gridy = 3;
 			jLabel16 = new JLabel();
 			jLabel16.setText("Núcleo de Gestão em Tecnologia da Informação");
 			jLabel16.setFont(new Font("Dialog", Font.PLAIN, 8));
 			jPanel5 = new JPanel();
-			GridBagLayout gbl_jPanel5 = new GridBagLayout();
-			gbl_jPanel5.columnWidths = new int[]{1, 251, 0};
-			gbl_jPanel5.rowHeights = new int[]{0, 0, 0, 0, 0, 9};
-			gbl_jPanel5.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 1.0, 0.0};
-			gbl_jPanel5.columnWeights = new double[]{0.0, 0.0, 1.0};
-			jPanel5.setLayout(gbl_jPanel5);
+			jPanel5.setLayout(new GridBagLayout());
 			jPanel5.setFont(new Font("Dialog", Font.PLAIN, 10));
 			jPanel5.setBackground(new Color(204, 255, 204));
-			GridBagConstraints gridBagConstraints29 = new GridBagConstraints();
-			gridBagConstraints29.gridx = 1;
-			gridBagConstraints29.anchor = GridBagConstraints.EAST;
-			gridBagConstraints29.insets = new Insets(4, 4, 5, 10);
-			gridBagConstraints29.weightx = 1.0;
-			gridBagConstraints29.gridy = 0;
-			jLabel19 = new JLabel();
-			jLabel19.setText("NGTI");
-			jPanel5.add(jLabel19, gridBagConstraints29);
-			GridBagConstraints gridBagConstraints27 = new GridBagConstraints();
-			gridBagConstraints27.gridx = 2;
-			gridBagConstraints27.anchor = GridBagConstraints.EAST;
-			gridBagConstraints27.weightx = 0.0;
-			gridBagConstraints27.insets = new Insets(4, 0, 5, 4);
-			gridBagConstraints27.gridy = 0;
-			jLabel17 = new JLabel();
-			jLabel17.setText("NAPSI");
-			jPanel5.add(jLabel17, gridBagConstraints27);
-			GridBagConstraints gbc_label_3 = new GridBagConstraints();
-			gbc_label_3.anchor = GridBagConstraints.WEST;
-			gbc_label_3.insets = new Insets(0, 0, 5, 5);
-			gbc_label_3.gridx = 1;
-			gbc_label_3.gridy = 1;
-			jPanel5.add(getLabel_3(), gbc_label_3);
-			GridBagConstraints gbc_label_4 = new GridBagConstraints();
-			gbc_label_4.anchor = GridBagConstraints.WEST;
-			gbc_label_4.insets = new Insets(0, 0, 5, 5);
-			gbc_label_4.gridx = 1;
-			gbc_label_4.gridy = 2;
-			jPanel5.add(getLabel_4(), gbc_label_4);
-			GridBagConstraints gbc_label_5 = new GridBagConstraints();
-			gbc_label_5.anchor = GridBagConstraints.WEST;
-			gbc_label_5.insets = new Insets(0, 0, 5, 5);
-			gbc_label_5.gridx = 1;
-			gbc_label_5.gridy = 3;
-			jPanel5.add(getLabel_5(), gbc_label_5);
 			jPanel5.add(jLabel16, gridBagConstraints26);
 			jPanel5.add(jLabel18, gridBagConstraints28);
+			jPanel5.add(jLabel19, gridBagConstraints29);
+			jPanel5.add(jLabel17, gridBagConstraints27);
 			jPanel5.add(jLabel20, gridBagConstraints30);
 			jPanel5.add(jLabel21, gridBagConstraints31);
+			jPanel5.add(getJPanel10(), gridBagConstraints53);
 		}
 		return jPanel5;
+	}
+	
+	private JPanel getJPanel10() {
+		if (jPanel10 == null) {
+			GridBagConstraints gridBagConstraints52 = new GridBagConstraints();
+			gridBagConstraints52.gridx = 0;
+			gridBagConstraints52.anchor = GridBagConstraints.WEST;
+			gridBagConstraints52.fill = GridBagConstraints.HORIZONTAL;
+			gridBagConstraints52.insets = new Insets(0, 4, 4, 0);
+			gridBagConstraints52.gridy = 2;
+			jLabel30 = new JLabel();
+			jLabel30.setText("Tel.: (73) 3536-1210");
+			jLabel30.setFont(new Font("Dialog", Font.PLAIN, 10));
+			GridBagConstraints gridBagConstraints51 = new GridBagConstraints();
+			gridBagConstraints51.gridx = 0;
+			gridBagConstraints51.anchor = GridBagConstraints.WEST;
+			gridBagConstraints51.fill = GridBagConstraints.HORIZONTAL;
+			gridBagConstraints51.insets = new Insets(0, 4, 0, 0);
+			gridBagConstraints51.gridy = 1;
+			jLabel29 = new JLabel();
+			jLabel29.setText("BR 420 (Rodovia Santa Inês – Ubaíra), Zona Rural, Bahia");
+			jLabel29.setFont(new Font("Dialog", Font.PLAIN, 10));
+			GridBagConstraints gridBagConstraints50 = new GridBagConstraints();
+			gridBagConstraints50.gridx = 0;
+			gridBagConstraints50.anchor = GridBagConstraints.WEST;
+			gridBagConstraints50.fill = GridBagConstraints.HORIZONTAL;
+			gridBagConstraints50.insets = new Insets(4, 4, 0, 0);
+			gridBagConstraints50.gridy = 0;
+			jLabel28 = new JLabel();
+			jLabel28.setText("IF Baiano – Campus Santa Inês");
+			jLabel28.setFont(new Font("Dialog", Font.PLAIN, 10));
+			jPanel10 = new JPanel();
+			jPanel10.setLayout(new GridBagLayout());
+			jPanel10.setBackground(new Color(204, 255, 204));
+			jPanel10.add(jLabel28, gridBagConstraints50);
+			jPanel10.add(jLabel29, gridBagConstraints51);
+			jPanel10.add(jLabel30, gridBagConstraints52);
+		}
+		return jPanel10;
 	}
 
 
@@ -493,7 +457,7 @@ public class aplicacao extends JFrame {
 	 */
 	private void initialize() {
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setSize(650, 700);
+		this.setSize(637, 664);
 		this.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/br/edu/ifbaiano/napsi/excelcheck/img/LogoIF.jpg")));
 		this.setContentPane(getJContentPane());
 		this.setTitle("Excel Check");
@@ -547,79 +511,6 @@ public class aplicacao extends JFrame {
 		}
 		return jContentPane;
 	}	
-	private JButton getBtnNAPSI() {
-		if (btnNAPSI == null) {
-			btnNAPSI = new JButton("");
-			btnNAPSI.setBounds(563, 255, 58, 23);
-		}
-		return btnNAPSI;
-	}
-	private JLabel getLblNomeDoArquivo_1() {
-		if (lblNomeDoArquivo_1 == null) {
-			lblNomeDoArquivo_1 = new JLabel("Nome do arquivo:");
-			lblNomeDoArquivo_1.setBounds(10, 287, 99, 14);
-		}
-		return lblNomeDoArquivo_1;
-	}
-	private JLabel getLabel() {
-		if (label == null) {
-			label = new JLabel(".");
-			label.setFont(new Font("Tahoma", Font.BOLD, 11));
-			label.setBounds(122, 287, 502, 14);
-		}
-		return label;
-	}
-	private JLabel getLblColunas_1() {
-		if (lblColunas_1 == null) {
-			lblColunas_1 = new JLabel("Colunas:");
-			lblColunas_1.setBounds(10, 312, 46, 14);
-		}
-		return lblColunas_1;
-	}
-	private JLabel getLblLinhas_1() {
-		if (lblLinhas_1 == null) {
-			lblLinhas_1 = new JLabel("Linhas:");
-			lblLinhas_1.setBounds(10, 337, 46, 14);
-		}
-		return lblLinhas_1;
-	}
-	private JLabel getLabel_1() {
-		if (label_1 == null) {
-			label_1 = new JLabel(".");
-			label_1.setFont(new Font("Tahoma", Font.BOLD, 11));
-			label_1.setBounds(122, 312, 161, 14);
-		}
-		return label_1;
-	}
-	private JLabel getLabel_2() {
-		if (label_2 == null) {
-			label_2 = new JLabel(".");
-			label_2.setFont(new Font("Tahoma", Font.BOLD, 11));
-			label_2.setBounds(122, 337, 161, 14);
-		}
-		return label_2;
-	}
-	private JLabel getLblNewLabel_3() {
-		if (lblNewLabel_3 == null) {
-			lblNewLabel_3 = new JLabel("Informe qual coluna ser\u00E1 usada para compara\u00E7\u00E3o:");
-			lblNewLabel_3.setBounds(10, 167, 415, 14);
-		}
-		return lblNewLabel_3;
-	}
-	private JLabel getLblAPlanilhaInforma() {
-		if (lblAPlanilhaInforma == null) {
-			lblAPlanilhaInforma = new JLabel("Informe qual coluna ser\u00E1 usada para compara\u00E7\u00E3o:");
-			lblAPlanilhaInforma.setBounds(10, 362, 415, 14);
-		}
-		return lblAPlanilhaInforma;
-	}
-	private JButton getBtnComparar() {
-		if (btnComparar == null) {
-			btnComparar = new JButton("Comparar");
-			btnComparar.setBounds(266, 410, 89, 23);
-		}
-		return btnComparar;
-	}
 	private JLabel getLabel_3() {
 		if (label_3 == null) {
 			label_3 = new JLabel();
@@ -644,11 +535,325 @@ public class aplicacao extends JFrame {
 		}
 		return label_5;
 	}
-	private JComboBox getComboBox() {
-		if (comboBox == null) {
-			comboBox = new JComboBox();
-			comboBox.setBounds(10, 387, 28, 20);
+	private JPanel getPanel() {
+		if (panel == null) {
+			panel = new JPanel();
+			panel.setBackground(Color.WHITE);
+			GridBagLayout gbl_panel = new GridBagLayout();
+			gbl_panel.columnWidths = new int[]{20, 99, 127, 284, 54, 0, 0};
+			gbl_panel.rowHeights = new int[]{30, 25, 30, 25, 25, 25, 25, 25, 25, 30, 25, 25, 25, 25, 25, 40, 0};
+			gbl_panel.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+			gbl_panel.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+			panel.setLayout(gbl_panel);
+			GridBagConstraints gbc_label = new GridBagConstraints();
+			gbc_label.anchor = GridBagConstraints.NORTHWEST;
+			gbc_label.insets = new Insets(0, 0, 5, 5);
+			gbc_label.gridwidth = 3;
+			gbc_label.gridx = 1;
+			gbc_label.gridy = 1;
+			panel.add(getLabel(), gbc_label);
+			GridBagConstraints gbc_diretorioSRA = new GridBagConstraints();
+			gbc_diretorioSRA.fill = GridBagConstraints.HORIZONTAL;
+			gbc_diretorioSRA.insets = new Insets(0, 0, 5, 5);
+			gbc_diretorioSRA.gridwidth = 3;
+			gbc_diretorioSRA.gridx = 1;
+			gbc_diretorioSRA.gridy = 2;
+			panel.add(getDiretorioSRA(), gbc_diretorioSRA);
+			GridBagConstraints gbc_btnSRA = new GridBagConstraints();
+			gbc_btnSRA.fill = GridBagConstraints.VERTICAL;
+			gbc_btnSRA.insets = new Insets(0, 0, 5, 5);
+			gbc_btnSRA.gridx = 4;
+			gbc_btnSRA.gridy = 2;
+			panel.add(getBtnSRA(), gbc_btnSRA);
+			GridBagConstraints gbc_label_1 = new GridBagConstraints();
+			gbc_label_1.anchor = GridBagConstraints.NORTH;
+			gbc_label_1.fill = GridBagConstraints.HORIZONTAL;
+			gbc_label_1.insets = new Insets(0, 0, 5, 5);
+			gbc_label_1.gridx = 1;
+			gbc_label_1.gridy = 3;
+			panel.add(getLabel_1(), gbc_label_1);
+			GridBagConstraints gbc_lblNomeSra = new GridBagConstraints();
+			gbc_lblNomeSra.fill = GridBagConstraints.BOTH;
+			gbc_lblNomeSra.insets = new Insets(0, 0, 5, 5);
+			gbc_lblNomeSra.gridwidth = 3;
+			gbc_lblNomeSra.gridx = 2;
+			gbc_lblNomeSra.gridy = 3;
+			panel.add(getLblNomeSra(), gbc_lblNomeSra);
+			GridBagConstraints gbc_label_2 = new GridBagConstraints();
+			gbc_label_2.anchor = GridBagConstraints.NORTHWEST;
+			gbc_label_2.insets = new Insets(0, 0, 5, 5);
+			gbc_label_2.gridx = 1;
+			gbc_label_2.gridy = 4;
+			panel.add(getLabel_2(), gbc_label_2);
+			GridBagConstraints gbc_lblColunaSra = new GridBagConstraints();
+			gbc_lblColunaSra.anchor = GridBagConstraints.WEST;
+			gbc_lblColunaSra.fill = GridBagConstraints.VERTICAL;
+			gbc_lblColunaSra.insets = new Insets(0, 0, 5, 5);
+			gbc_lblColunaSra.gridwidth = 2;
+			gbc_lblColunaSra.gridx = 2;
+			gbc_lblColunaSra.gridy = 4;
+			panel.add(getLblColunaSra(), gbc_lblColunaSra);
+			GridBagConstraints gbc_label_6 = new GridBagConstraints();
+			gbc_label_6.anchor = GridBagConstraints.NORTHWEST;
+			gbc_label_6.insets = new Insets(0, 0, 5, 5);
+			gbc_label_6.gridx = 1;
+			gbc_label_6.gridy = 5;
+			panel.add(getLabel_6(), gbc_label_6);
+			GridBagConstraints gbc_lblLinhaSra = new GridBagConstraints();
+			gbc_lblLinhaSra.anchor = GridBagConstraints.WEST;
+			gbc_lblLinhaSra.fill = GridBagConstraints.VERTICAL;
+			gbc_lblLinhaSra.insets = new Insets(0, 0, 5, 5);
+			gbc_lblLinhaSra.gridwidth = 2;
+			gbc_lblLinhaSra.gridx = 2;
+			gbc_lblLinhaSra.gridy = 5;
+			panel.add(getLblLinhaSra(), gbc_lblLinhaSra);
+			GridBagConstraints gbc_label_7 = new GridBagConstraints();
+			gbc_label_7.anchor = GridBagConstraints.NORTH;
+			gbc_label_7.fill = GridBagConstraints.HORIZONTAL;
+			gbc_label_7.insets = new Insets(0, 0, 5, 5);
+			gbc_label_7.gridwidth = 3;
+			gbc_label_7.gridx = 1;
+			gbc_label_7.gridy = 6;
+			panel.add(getLabel_7(), gbc_label_7);
+			GridBagConstraints gbc_comboBoxSra = new GridBagConstraints();
+			gbc_comboBoxSra.fill = GridBagConstraints.BOTH;
+			gbc_comboBoxSra.insets = new Insets(0, 0, 5, 5);
+			gbc_comboBoxSra.gridwidth = 2;
+			gbc_comboBoxSra.gridx = 1;
+			gbc_comboBoxSra.gridy = 7;
+			panel.add(getComboBoxSra(), gbc_comboBoxSra);
+			GridBagConstraints gbc_label_8 = new GridBagConstraints();
+			gbc_label_8.anchor = GridBagConstraints.NORTHWEST;
+			gbc_label_8.insets = new Insets(0, 0, 5, 5);
+			gbc_label_8.gridwidth = 3;
+			gbc_label_8.gridx = 1;
+			gbc_label_8.gridy = 8;
+			panel.add(getLabel_8(), gbc_label_8);
+			GridBagConstraints gbc_diretorioNapsi = new GridBagConstraints();
+			gbc_diretorioNapsi.fill = GridBagConstraints.HORIZONTAL;
+			gbc_diretorioNapsi.insets = new Insets(0, 0, 5, 5);
+			gbc_diretorioNapsi.gridwidth = 3;
+			gbc_diretorioNapsi.gridx = 1;
+			gbc_diretorioNapsi.gridy = 9;
+			panel.add(getDiretorioNapsi(), gbc_diretorioNapsi);
+			GridBagConstraints gbc_btnNAPSI = new GridBagConstraints();
+			gbc_btnNAPSI.fill = GridBagConstraints.VERTICAL;
+			gbc_btnNAPSI.insets = new Insets(0, 0, 5, 5);
+			gbc_btnNAPSI.gridx = 4;
+			gbc_btnNAPSI.gridy = 9;
+			panel.add(getBtnNAPSI(), gbc_btnNAPSI);
+			GridBagConstraints gbc_label_9 = new GridBagConstraints();
+			gbc_label_9.anchor = GridBagConstraints.NORTH;
+			gbc_label_9.fill = GridBagConstraints.HORIZONTAL;
+			gbc_label_9.insets = new Insets(0, 0, 5, 5);
+			gbc_label_9.gridx = 1;
+			gbc_label_9.gridy = 10;
+			panel.add(getLabel_9(), gbc_label_9);
+			GridBagConstraints gbc_lblNomeNapsi = new GridBagConstraints();
+			gbc_lblNomeNapsi.fill = GridBagConstraints.BOTH;
+			gbc_lblNomeNapsi.insets = new Insets(0, 0, 5, 5);
+			gbc_lblNomeNapsi.gridwidth = 3;
+			gbc_lblNomeNapsi.gridx = 2;
+			gbc_lblNomeNapsi.gridy = 10;
+			panel.add(getLblNomeNapsi(), gbc_lblNomeNapsi);
+			GridBagConstraints gbc_label_10 = new GridBagConstraints();
+			gbc_label_10.anchor = GridBagConstraints.NORTHWEST;
+			gbc_label_10.insets = new Insets(0, 0, 5, 5);
+			gbc_label_10.gridx = 1;
+			gbc_label_10.gridy = 11;
+			panel.add(getLabel_10(), gbc_label_10);
+			GridBagConstraints gbc_lblColunasNapsi = new GridBagConstraints();
+			gbc_lblColunasNapsi.anchor = GridBagConstraints.WEST;
+			gbc_lblColunasNapsi.fill = GridBagConstraints.VERTICAL;
+			gbc_lblColunasNapsi.insets = new Insets(0, 0, 5, 5);
+			gbc_lblColunasNapsi.gridwidth = 2;
+			gbc_lblColunasNapsi.gridx = 2;
+			gbc_lblColunasNapsi.gridy = 11;
+			panel.add(getLblColunasNapsi(), gbc_lblColunasNapsi);
+			GridBagConstraints gbc_label_11 = new GridBagConstraints();
+			gbc_label_11.anchor = GridBagConstraints.NORTHWEST;
+			gbc_label_11.insets = new Insets(0, 0, 5, 5);
+			gbc_label_11.gridx = 1;
+			gbc_label_11.gridy = 12;
+			panel.add(getLabel_11(), gbc_label_11);
+			GridBagConstraints gbc_lblLinhaNapsi = new GridBagConstraints();
+			gbc_lblLinhaNapsi.anchor = GridBagConstraints.WEST;
+			gbc_lblLinhaNapsi.fill = GridBagConstraints.VERTICAL;
+			gbc_lblLinhaNapsi.insets = new Insets(0, 0, 5, 5);
+			gbc_lblLinhaNapsi.gridwidth = 2;
+			gbc_lblLinhaNapsi.gridx = 2;
+			gbc_lblLinhaNapsi.gridy = 12;
+			panel.add(getLblLinhaNapsi(), gbc_lblLinhaNapsi);
+			GridBagConstraints gbc_label_12 = new GridBagConstraints();
+			gbc_label_12.anchor = GridBagConstraints.NORTH;
+			gbc_label_12.fill = GridBagConstraints.HORIZONTAL;
+			gbc_label_12.insets = new Insets(0, 0, 5, 5);
+			gbc_label_12.gridwidth = 3;
+			gbc_label_12.gridx = 1;
+			gbc_label_12.gridy = 13;
+			panel.add(getLabel_12(), gbc_label_12);
+			GridBagConstraints gbc_comboBoxNapsi = new GridBagConstraints();
+			gbc_comboBoxNapsi.fill = GridBagConstraints.BOTH;
+			gbc_comboBoxNapsi.insets = new Insets(0, 0, 5, 5);
+			gbc_comboBoxNapsi.gridwidth = 2;
+			gbc_comboBoxNapsi.gridx = 1;
+			gbc_comboBoxNapsi.gridy = 14;
+			panel.add(getComboBoxNapsi(), gbc_comboBoxNapsi);
+			GridBagConstraints gbc_btnComparar = new GridBagConstraints();
+			gbc_btnComparar.anchor = GridBagConstraints.SOUTHWEST;
+			gbc_btnComparar.insets = new Insets(0, 0, 0, 5);
+			gbc_btnComparar.gridx = 3;
+			gbc_btnComparar.gridy = 15;
+			panel.add(getBtnComparar(), gbc_btnComparar);
 		}
-		return comboBox;
+		return panel;
+	}
+	private JLabel getLabel() {
+		if (label == null) {
+			label = new JLabel("Coloque a planilha dos alunos cadastrados (SRA):");
+		}
+		return label;
+	}
+	private JTextField getDiretorioSRA() {
+		if (diretorioSRA == null) {
+			diretorioSRA = new JTextField();
+			diretorioSRA.setEnabled(false);
+			diretorioSRA.setColumns(10);
+		}
+		return diretorioSRA;
+	}
+	private JButton getBtnSRA() {
+		if (btnSRA == null) {
+			btnSRA = new JButton("");
+		}
+		return btnSRA;
+	}
+	private JLabel getLabel_1() {
+		if (label_1 == null) {
+			label_1 = new JLabel("Nome do arquivo:");
+		}
+		return label_1;
+	}
+	private JLabel getLabel_2() {
+		if (label_2 == null) {
+			label_2 = new JLabel("Colunas:");
+		}
+		return label_2;
+	}
+	private JLabel getLabel_6() {
+		if (label_6 == null) {
+			label_6 = new JLabel("Linhas:");
+		}
+		return label_6;
+	}
+	private JLabel getLabel_7() {
+		if (label_7 == null) {
+			label_7 = new JLabel("Informe qual coluna ser\u00E1 usada para compara\u00E7\u00E3o:");
+		}
+		return label_7;
+	}
+	private JComboBox getComboBoxSra() {
+		if (comboBoxSra == null) {
+			comboBoxSra = new JComboBox();
+		}
+		return comboBoxSra;
+	}
+	private JLabel getLabel_8() {
+		if (label_8 == null) {
+			label_8 = new JLabel("Coloque a planilha com os candidatos ao benef\u00EDcio (NAPSI):");
+		}
+		return label_8;
+	}
+	private JTextField getDiretorioNapsi() {
+		if (diretorioNapsi == null) {
+			diretorioNapsi = new JTextField();
+			diretorioNapsi.setEnabled(false);
+			diretorioNapsi.setColumns(10);
+		}
+		return diretorioNapsi;
+	}
+	private JButton getBtnNAPSI() {
+		if (btnNAPSI == null) {
+			btnNAPSI = new JButton("");
+		}
+		return btnNAPSI;
+	}
+	private JLabel getLabel_9() {
+		if (label_9 == null) {
+			label_9 = new JLabel("Nome do arquivo:");
+		}
+		return label_9;
+	}
+	private JLabel getLabel_10() {
+		if (label_10 == null) {
+			label_10 = new JLabel("Colunas:");
+		}
+		return label_10;
+	}
+	private JLabel getLabel_11() {
+		if (label_11 == null) {
+			label_11 = new JLabel("Linhas:");
+		}
+		return label_11;
+	}
+	private JLabel getLabel_12() {
+		if (label_12 == null) {
+			label_12 = new JLabel("Informe qual coluna ser\u00E1 usada para compara\u00E7\u00E3o:");
+		}
+		return label_12;
+	}
+	private JComboBox getComboBoxNapsi() {
+		if (comboBoxNapsi == null) {
+			comboBoxNapsi = new JComboBox();
+		}
+		return comboBoxNapsi;
+	}
+	private JButton getBtnComparar() {
+		if (btnComparar == null) {
+			btnComparar = new JButton("Comparar");
+		}
+		return btnComparar;
+	}
+	private JLabel getLblNomeSra() {
+		if (lblNomeSra == null) {
+			lblNomeSra = new JLabel("");
+			lblNomeSra.setFont(new Font("Tahoma", Font.BOLD, 11));
+		}
+		return lblNomeSra;
+	}
+	private JLabel getLblColunaSra() {
+		if (lblColunaSra == null) {
+			lblColunaSra = new JLabel("");
+			lblColunaSra.setFont(new Font("Tahoma", Font.BOLD, 11));
+		}
+		return lblColunaSra;
+	}
+	private JLabel getLblLinhaSra() {
+		if (lblLinhaSra == null) {
+			lblLinhaSra = new JLabel("");
+			lblLinhaSra.setFont(new Font("Tahoma", Font.BOLD, 11));
+		}
+		return lblLinhaSra;
+	}
+	private JLabel getLblNomeNapsi() {
+		if (lblNomeNapsi == null) {
+			lblNomeNapsi = new JLabel("");
+			lblNomeNapsi.setFont(new Font("Tahoma", Font.BOLD, 11));
+		}
+		return lblNomeNapsi;
+	}
+	private JLabel getLblColunasNapsi() {
+		if (lblColunasNapsi == null) {
+			lblColunasNapsi = new JLabel("");
+			lblColunasNapsi.setFont(new Font("Tahoma", Font.BOLD, 11));
+		}
+		return lblColunasNapsi;
+	}
+	private JLabel getLblLinhaNapsi() {
+		if (lblLinhaNapsi == null) {
+			lblLinhaNapsi = new JLabel("");
+			lblLinhaNapsi.setFont(new Font("Tahoma", Font.BOLD, 11));
+		}
+		return lblLinhaNapsi;
 	}
 }  //  @jve:decl-index=0:visual-constraint="10,10"
