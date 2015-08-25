@@ -56,7 +56,7 @@ public class aplicacao extends JFrame {
 	private JLabel label_4;
 	private JLabel label_5;
 	private JPanel panel;
-	private JLabel label;
+	private JLabel lblColoqueAPlanilha;
 	private JLabel label_1;
 	private JLabel label_2;
 	private JLabel label_6;
@@ -545,13 +545,13 @@ public class aplicacao extends JFrame {
 			gbl_panel.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 			gbl_panel.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 			panel.setLayout(gbl_panel);
-			GridBagConstraints gbc_label = new GridBagConstraints();
-			gbc_label.anchor = GridBagConstraints.NORTHWEST;
-			gbc_label.insets = new Insets(0, 0, 5, 5);
-			gbc_label.gridwidth = 3;
-			gbc_label.gridx = 1;
-			gbc_label.gridy = 1;
-			panel.add(getLabel(), gbc_label);
+			GridBagConstraints gbc_lblColoqueAPlanilha = new GridBagConstraints();
+			gbc_lblColoqueAPlanilha.anchor = GridBagConstraints.NORTHWEST;
+			gbc_lblColoqueAPlanilha.insets = new Insets(0, 0, 5, 5);
+			gbc_lblColoqueAPlanilha.gridwidth = 3;
+			gbc_lblColoqueAPlanilha.gridx = 1;
+			gbc_lblColoqueAPlanilha.gridy = 1;
+			panel.add(getLblColoqueAPlanilha(), gbc_lblColoqueAPlanilha);
 			GridBagConstraints gbc_diretorioSRA = new GridBagConstraints();
 			gbc_diretorioSRA.fill = GridBagConstraints.HORIZONTAL;
 			gbc_diretorioSRA.insets = new Insets(0, 0, 5, 5);
@@ -708,11 +708,11 @@ public class aplicacao extends JFrame {
 		}
 		return panel;
 	}
-	private JLabel getLabel() {
-		if (label == null) {
-			label = new JLabel("Coloque a planilha dos alunos cadastrados (SRA):");
+	private JLabel getLblColoqueAPlanilha() {
+		if (lblColoqueAPlanilha == null) {
+			lblColoqueAPlanilha = new JLabel("Coloque a planilha dos alunos matriculados (SRA):");
 		}
-		return label;
+		return lblColoqueAPlanilha;
 	}
 	private JTextField getDiretorioSRA() {
 		if (diretorioSRA == null) {
@@ -725,6 +725,7 @@ public class aplicacao extends JFrame {
 	private JButton getBtnSRA() {
 		if (btnSRA == null) {
 			btnSRA = new JButton("");
+			btnSRA.setIcon(new ImageIcon(aplicacao.class.getResource("/br/edu/ifbaiano/napsi/excelcheck/img/folder_green.png")));
 		}
 		return btnSRA;
 	}
@@ -775,6 +776,7 @@ public class aplicacao extends JFrame {
 	private JButton getBtnNAPSI() {
 		if (btnNAPSI == null) {
 			btnNAPSI = new JButton("");
+			btnNAPSI.setIcon(new ImageIcon(aplicacao.class.getResource("/br/edu/ifbaiano/napsi/excelcheck/img/folder_green.png")));
 		}
 		return btnNAPSI;
 	}

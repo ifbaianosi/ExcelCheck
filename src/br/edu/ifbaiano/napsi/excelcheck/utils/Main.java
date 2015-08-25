@@ -142,10 +142,10 @@ public class Main {
 	}
 	
 	public String [] obterColunasNapsi (){
-		int qtdColunas = sheetSRA.getColumns();
+		int qtdColunas = sheetPsico.getColumns();
 		colunas = new String [qtdColunas];
 		for (int i = 0; i < qtdColunas; i++) {
-			colunas [i] = sheetSRA.getCell(i, 0).getContents();
+			colunas [i] = sheetPsico.getCell(i, 0).getContents();
 		}
 		return colunas;
 	}
